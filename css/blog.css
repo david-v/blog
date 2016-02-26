@@ -65,8 +65,12 @@ h3 {
 .comments textarea {
   height: 8rem;
 }
-.comments input[type=text] {
-  margin-top: -18px;
+.comments input[type=submit] {
+  margin-top: 12px;
+}
+.comments input[type=number] {
+  display: inline-block;
+  max-width: 30px;
 }
 .post.ng-hide {
   opacity: 0;

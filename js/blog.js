@@ -5,6 +5,7 @@
     
     var blog = this;
     blog.title = "david.veli!la";
+    blog.captcha = 8;
     
     blog.posts = [];
     $http.get('posts.json').success(function(allPostsData){
@@ -13,7 +14,6 @@
         var post = new Post(postData);
         blog.posts.push(post);
       }
-      console.log(Date.now());
       blog.posts[0].toggle();
     });
     
@@ -32,9 +32,13 @@
   app.controller('CommentController', function(){
     this.comment = {};
     this.addComment = function(post){
+      if ((1 + this.comment.captcha) != (1 + (post.id % 8))) {
+        return false;
+      }
       this.comment.createdOn = Date.now();
       post.comments.push(this.comment);
       this.comment = {};
+      return true;
     };
   });
  

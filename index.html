@@ -63,7 +63,7 @@
                         <h5 ng-show="post.comments.length > 0">Comments</h5>
                         <ul>
                          <li ng-repeat="comment in post.comments" class="comment">
-                            <cite><b>{{comment.author}}</b></cite> - <cite>{{comment.createdOn | date}}</cite>
+                            <cite><b>{{comment.author}}</b></cite> - <cite>{{comment.createdOn | date : "d MMM yyyy hh:mm"}}</cite>
                             <p>{{comment.body}}</p>
                          </li>
                         </ul>
@@ -80,13 +80,10 @@
                             <input type="text" ng-model="commentCtrl.comment.author" required placeholder="Name"/>
                           </div>
                           <div class="col s6 m3 l3">
-                            <span>1 + <a class='dropdown-button btn' data-activates='dropdown-{{post.id}}'>n</a> = {{1 + (post.id % 3)}}</span>
-                            <ul id='dropdown-{{post.id}}' class='dropdown-content'>
-                              <li><a href="#!">0</a></li>
-                              <li><a href="#!">1</a></li>
-                              <li><a href="#!">2</a></li>
-                              <li><a href="#!">3</a></li>
-                            </ul>
+                            <span>1 + </span>
+                            <input type="number" ng-model="commentCtrl.comment.captcha" required placeholder="N"/>
+                            <span> = {{1 + (post.id % 8)}}</span>
+                            
                           </div>
                           <div class="col s6 m3 l3">
                             <input class="btn" type="submit" value="submit"/>
@@ -116,11 +113,6 @@
         $('.scrollspy').scrollSpy();
         $('.tooltipped').tooltip();
         Prism.highlightAll();
-        $('.dropdown-button').dropdown({
-            constrain_width: true,
-            hover: true,
-            belowOrigin: true,
-        });
       }, 1000);
       $('.table-of-contents').pushpin({ top: ($('.table-of-contents').offset().top - 20) });
     });
