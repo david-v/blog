@@ -15,19 +15,12 @@
 <body ng-app="blogApp">
 
   <div ng-controller="BlogController as blog">
+
     <div class="topbar">
-      <div class="row">
-        <div class="col s4">
-          <h1 ng-click="blog.selectTab('blog')">{{blog.title}}</h1>
-        </div>
-      </div>
+      <h1 ng-click="blog.selectTab('blog')">{{blog.title}}</h1>
     </div>
 
     <nav>
-      <ul class="left hide-on-med-and-down">
-        <li><a href="#!">First Sidebar Link</a></li>
-        <li><a href="#!">Second Sidebar Link</a></li>
-      </ul>
       <ul id="slide-out" class="side-nav">
         <li><a href="#!">First Sidebar Link</a></li>
         <li><a href="#!">Second Sidebar Link</a></li>
@@ -35,78 +28,85 @@
       <a href="#" data-activates="slide-out" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
     </nav>
 
-    <div class="container">
-      <div class="row">
-        <div class="col s12 m9 l9">
-          <div class="post-grid" ng-show="blog.isTabSelected('blog')">
-            <ul>
-              <li ng-repeat="post in blog.posts">
-                <div id="post-{{post.id}}" class="section scrollspy">
+    <div class="row">
+
+      <div class="col hide-on-small-only m2 l2 left-sidebar">
+        <h5>Filters</h5>
+        <ul class="section tags">
+          <li ng-repeat="tag in blog.tags"><span>{{tag}}</span></li>
+        </ul>
+      </div>
+
+      <div class="col s12 m7 l7">
+        <div class="post-grid" ng-show="blog.isTabSelected('blog')">
+          <ul>
+            <li ng-repeat="post in blog.posts">
+              <div id="post-{{post.id}}" class="section scrollspy">
+                <div ng-click="post.toggle()" class="cursor-pointer">
+                  <h3>{{post.title}}</h3>
+                  <cite>{{post.createdOn}}</cite>
+                </div>
+                <ul class="tags">
+                  <li ng-repeat="tag in post.tags"><span>{{tag}}</span></li>
+                </ul>
+                <div ng-show="!post.isExpanded()">
+                  <div ng-click="post.toggle()" class="cursor-pointer tooltipped" data-position="bottom" data-delay="50" data-tooltip="Show me more!">
+                    <p ng-bind-html="post.body | limitTo:500"></p>
+                  </div>
                   <div ng-click="post.toggle()" class="cursor-pointer">
-                    <h3>{{post.title}}</h3>
-                    <cite>{{post.createdOn}}</cite>
-                  </div>
-                  <ul class="tags">
-                    <li ng-repeat="tag in post.tags"><span>{{tag}}</span></li>
-                  </ul>
-                  <div ng-show="!post.isExpanded()">
-                    <div ng-click="post.toggle()" class="cursor-pointer tooltipped" data-position="bottom" data-delay="50" data-tooltip="Show me more!">
-                      <p ng-bind-html="post.body | limitTo:500"></p>
-                    </div>
-                    <div ng-click="post.toggle()" class="cursor-pointer">
-                      <p class="fa fa-comment push-left" ng-show="{{post.comments.length}} > 0">
-                        {{post.comments.length}} comment<span ng-show="{{post.comments.length}} != 1">s</span>
-                      </p>
-                    </div>
-                  </div>
-                  
-                  <div ng-show="post.isExpanded()">
-                    <p ng-bind-html="post.body"></p>
-                    <img ng-if="post.image" ng-src="{{post.image}}"/>
-                    <div class="comments" ng-controller="CommentController as commentCtrl">
-                      <div ng-click="post.toggle()" class="cursor-pointer">
-                        <h5 ng-show="post.comments.length > 0">Comments</h5>
-                        <ul>
-                         <li ng-repeat="comment in post.comments" class="comment">
-                            <cite><b>{{comment.author}}</b></cite> - <cite>{{comment.createdOn | date : "d MMM yyyy hh:mm"}}</cite>
-                            <p>{{comment.body}}</p>
-                         </li>
-                        </ul>
-                      </div>
-                      <form name="commentForm" ng-submit="commentForm.$valid && commentCtrl.addComment(post)" novalidate>
-                        <div class="row">
-                          <div class="col s12 m12 l12">
-                            <h6>Add Comment</h6>
-                            <textarea ng-model="commentCtrl.comment.body" cols="30" rows="5" required></textarea>
-                          </div>
-                        </div>
-                        <div class="row">
-                          <div class="col s12 m6 l6">
-                            <input type="text" ng-model="commentCtrl.comment.author" required placeholder="Name"/>
-                          </div>
-                          <div class="col s6 m3 l3">
-                            <span>1 + </span>
-                            <input type="number" ng-model="commentCtrl.comment.captcha" required placeholder="N"/>
-                            <span> = {{1 + (post.id % 8)}}</span>
-                            
-                          </div>
-                          <div class="col s6 m3 l3">
-                            <input class="btn" type="submit" value="submit"/>
-                          </div>
-                        </div>
-                      </form>
-                    </div>
+                    <p class="fa fa-comment push-left" ng-show="{{post.comments.length}} > 0">
+                      {{post.comments.length}} comment<span ng-show="{{post.comments.length}} != 1">s</span>
+                    </p>
                   </div>
                 </div>
-              </li>
-            </ul>
-          </div>
-        </div>
-        <div class="col hide-on-small-only m3 l3">
-          <ul class="section table-of-contents">
-            <li ng-repeat="post in blog.posts"><a href="#post-{{post.id}}">{{post.title}}</a></li>
+                
+                <div ng-show="post.isExpanded()">
+                  <p ng-bind-html="post.body"></p>
+                  <img ng-if="post.image" ng-src="{{post.image}}"/>
+                  <div class="comments" ng-controller="CommentController as commentCtrl">
+                    <div ng-click="post.toggle()" class="cursor-pointer">
+                      <h5 ng-show="post.comments.length > 0">Comments</h5>
+                      <ul>
+                       <li ng-repeat="comment in post.comments" class="comment">
+                          <cite><b>{{comment.author}}</b></cite> - <cite>{{comment.createdOn | date : "d MMM yyyy hh:mm"}}</cite>
+                          <p>{{comment.body}}</p>
+                       </li>
+                      </ul>
+                    </div>
+                    <form name="commentForm" ng-submit="commentForm.$valid && commentCtrl.addComment(post)" novalidate>
+                      <div class="row">
+                        <div class="col s12 m12 l12">
+                          <h6>Add Comment</h6>
+                          <textarea ng-model="commentCtrl.comment.body" cols="30" rows="5" required></textarea>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col s12 m6 l6">
+                          <input type="text" ng-model="commentCtrl.comment.author" required placeholder="Name"/>
+                        </div>
+                        <div class="col s6 m3 l3">
+                          <span>1 + </span>
+                          <input type="number" ng-model="commentCtrl.comment.captcha" required placeholder="N"/>
+                          <span> = {{1 + (post.id % 8)}}</span>
+                          
+                        </div>
+                        <div class="col s6 m3 l3">
+                          <input class="btn" type="submit" value="submit"/>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </li>
           </ul>
         </div>
+      </div>
+
+      <div class="col hide-on-small-only m3 l3 toc-container">
+        <ul class="section table-of-contents">
+          <li ng-repeat="post in blog.posts"><a href="#post-{{post.id}}">{{post.title}}</a></li>
+        </ul>
       </div>
     </div>
   </div>
@@ -116,12 +116,11 @@
       <div class="row">
         <div class="col l6 s12">
           <h5 class="white-text">This is the end.</h5>
-          <p class="grey-text text-lighten-4">I wrote this blog in Angular. It uses a script that finds contents in my Github repositories and publishes it automatically as blog posts. You can find (and use) its source code in Github.</p>
+          <cite>In fact, the beginning: you just read my first entry.</cite>
+          <p class="grey-text text-lighten-4">I wrote this blog in Angular. It uses a script that finds contents in my Github repositories and publishes them automatically as blog posts. You can find (and use) its source code in Github.</p>
         </div>
         <div class="col l4 offset-l2 s12">
-          <div class="row">
             <h5 class="white-text">You can find me on:</h5>
-          </div>
           <div class="row">
             <a class="social-link col s1 m1 l1" href="https://uk.linkedin.com/in/dvelilla" target="_blank"><img src="img/linkedin.ico"></a>
             <a class="social-link col s11 m11 l11" href="https://uk.linkedin.com/in/dvelilla" target="_blank"><span>uk.linkedin.com/in/dvelilla</span></a>

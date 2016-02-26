@@ -3,7 +3,7 @@
     "title": "Google App Engine",
     "createdOn": "24 Feb 2016",
     "body": "Google App Engine running! I've deployed the app to: <a target='_blank' href='https://plaza-mayor.appspot.com/towns/Segura'>https://plaza-mayor.appspot.com/towns/Segura</a></br></br>It was quite difficult to make this run. A lot harder than Google's 5 min tutorial to deploy a Hello World Servlet with no framework. I had to downgrade to JDK 7. Then use Jetty instead of Tomcat, so I had to learn it too, that and configure Intellij. It also required changes in the codebase: cache, logging system. But probably the worst was a <a target='_blank' href='https://jira.spring.io/browse/SPR-13829'>BUG in my version of Spring: 4.2.4</a> that makes GAE not run. I had to downgrade to 4.1.3</br></br>It's pretty nice that Google's implementation of a SQL database is MySQL (could have been anything else!) so it still works with the JDBC Dialects that I had configured, at least I didn't have to change that... I can now go to bed knowing that I just gave birth to a proper web service to find towns in Spain. I'll think of what to do with it tomorrow.",
-    "tags": ["Google", "GAE", "App Engine", "Cloud Computing", "Auto Scaling", "Plaza Mayor", "Spring", "Jetty"]
+    "tags": ["Google", "GAE", "App Engine", "Cloud", "Scaling", "Plaza Mayor", "Spring", "Jetty"]
 },{
     "id": 7,
     "title": "6666 the number of the Beast",

@@ -40,6 +40,12 @@ h2,
 h3 {
   color: #3a8bab;
 }
+
+h4,
+h5 {
+  color: #ee6e73;
+}
+
 .post {
   -webkit-transition: 0.5s linear all;
   transition: 0.5s linear all;
@@ -136,11 +142,10 @@ ul.tags li span {
   padding: 10px;
 }
 
-nav .left {
-  background-color: #79B9F2;
-  position: fixed;
-  height: 100%;
-  left: 0;
-  top: 150px;
-  width: 200px;
+.main-container .toc-container {
+  padding-right: 0px;
+}
+
+.left-sidebar {
+  margin-top: 50px;
 }
