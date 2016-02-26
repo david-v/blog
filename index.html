@@ -20,15 +20,20 @@
         <div class="col s4">
           <h1 ng-click="blog.selectTab('blog')">{{blog.title}}</h1>
         </div>
-        <!-- <div class="col s4">
-          <nav role='navigation'>
-            <ul>
-              <li><a href="#" ng-click="blog.selectTab('blog')">Blog</a></li>
-            </ul>
-          </nav> 
-        </div> -->
       </div>
     </div>
+
+    <nav>
+      <ul class="left hide-on-med-and-down">
+        <li><a href="#!">First Sidebar Link</a></li>
+        <li><a href="#!">Second Sidebar Link</a></li>
+      </ul>
+      <ul id="slide-out" class="side-nav">
+        <li><a href="#!">First Sidebar Link</a></li>
+        <li><a href="#!">Second Sidebar Link</a></li>
+      </ul>
+      <a href="#" data-activates="slide-out" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
+    </nav>
 
     <div class="container">
       <div class="row">
@@ -141,6 +146,12 @@
         $('.scrollspy').scrollSpy();
         $('.tooltipped').tooltip();
         Prism.highlightAll();
+        $('.button-collapse').sideNav({
+            menuWidth: 300, // Default is 240
+            edge: 'left', // Choose the horizontal origin
+            closeOnClick: true // Closes side-nav on <a> clicks, useful for Angular/Meteor
+          }
+        );
       }, 1000);
       $('.table-of-contents').pushpin({ top: ($('.table-of-contents').offset().top - 20) });
     });

@@ -8,13 +8,22 @@
     blog.captcha = 8;
     
     blog.posts = [];
+    blog.tags = [];
+
     $http.get('posts.json').success(function(allPostsData){
       for (var i = 0; i < allPostsData.length; i++) {
         var postData = allPostsData[i];
         var post = new Post(postData);
+        for (var j = 0; j < post.tags.length; j++) {
+          var tag = post.tags[j];
+          if (-1 == blog.tags.indexOf(tag)) {
+            blog.tags.push(tag);
+          }
+        }
         blog.posts.push(post);
       }
       blog.posts[0].toggle();
+      console.log(blog.tags);
     });
     
     blog.selectedTab = 'blog';
