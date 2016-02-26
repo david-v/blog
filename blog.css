@@ -11,7 +11,7 @@ html {
   z-index: 9999;
   padding: 5px 20px;
 }
-.topbar h1 {
+.cursor-pointer {
   cursor: pointer;
 }
 .topbar nav {
@@ -36,7 +36,6 @@ ul.post-grid {
 }
 ul.post-grid li {
   padding: 20px;
-  cursor: pointer;
   /*transition: background linear 0.5s;*/
   border-bottom: 1px solid #3a8bab;
 }
@@ -112,8 +111,8 @@ ul.tags {
 ul.tags li {
   display: inline-block;
   border: none;
-  padding: 0px 5px;
-  margin: 0;
+  padding: 0px 5px 0px 0px;
+  margin: 5px 0px 5px 0px;
 }
 
 ul.tags li span {

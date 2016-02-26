@@ -1,10 +1,10 @@
 <html>
 <head>
   <link rel="stylesheet" type="text/css" href="blog.css">
-  <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.2/angular.min.js"></script>
-  <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.9/angular-animate.js"></script>
+  <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>
+  <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular-sanitize.js"></script>
+  <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular-animate.js"></script>
   <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
-  <script type="text/javascript" src="//s3-us-west-2.amazonaws.com/s.cdpn.io/110131/responsive.js"></script>
   <script type="text/javascript" src="blog.js"></script>
 </head>
 <body ng-app="blogApp">
@@ -31,28 +31,26 @@
         <div class="row">
           <ul class="post-grid" ng-show="blog.isTabSelected('blog')">
             <li ng-repeat="post in blog.posts" class="col-s-4" ng-class="{ 'reset-s' : $index%3==0 }">
-              <div ng-click="post.toggle()">
-                <h3 >{{post.title}}</h3>
+              <div ng-click="post.toggle()" class="cursor-pointer">
+                <h3>{{post.title}}</h3>
                 <cite>{{post.createdOn | date}}</cite>
-                <ul class="tags">
-                  <li ng-repeat="tag in post.tags"><span>{{tag}}</span></li>
-                </ul>
               </div>
+              <ul class="tags">
+                <li ng-repeat="tag in post.tags"><span>{{tag}}</span></li>
+              </ul>
               <div ng-show="!post.isExpanded()">
-                <div ng-click="post.toggle()">
-                  <p>{{post.body | limitTo:240}}...</p>
+                <p ng-bind-html="post.body | limitTo:240">...</p>
+                <div ng-click="post.toggle()" class="cursor-pointer">
                   <p class="fa fa-comment push-left" ng-show="{{post.comments.length}} > 0">
                     {{post.comments.length}} comment<span ng-show="{{post.comments.length}} != 1">s</span>
                   </p>
                 </div>
               </div>
               <div ng-show="post.isExpanded()">
-                <div ng-click="post.toggle()">
-                  <p>{{post.body}}</p>
-                </div>
+                <p ng-bind-html="post.body"></p>
                 <img src="{{post.image}}" ng-show="{{post.image}}"/>
                 <div class="comments" ng-controller="CommentController as commentCtrl">
-                  <div ng-click="post.toggle()">
+                  <div ng-click="post.toggle()" class="cursor-pointer">
                     <h3 ng-show="post.comments.length > 0">Comments</h3>
                     <ul>
                      <li ng-repeat="comment in post.comments">
@@ -63,10 +61,16 @@
                   </div>
                   <form name="commentForm" ng-submit="commentForm.$valid && commentCtrl.addComment(post)" novalidate>
                     <h4>Add Comment</h4>
-                      <textarea ng-model="commentCtrl.comment.body" cols="30" rows="10" required></textarea>
+                      <textarea ng-model="commentCtrl.comment.body" cols="30" rows="5" required></textarea>
                       <label for="">by:</label>
-                      <input type="text" ng-model="commentCtrl.comment.author" required placeholder="Name"/>
-                      <input type="submit" value="Submit" />
+                      <div class="row">
+                        <div class="col-md-4">
+                          <input type="text" ng-model="commentCtrl.comment.author" required placeholder="Name"/>
+                        </div>
+                        <div class="col-md-4">
+                          <input type="submit" value="Submit" />
+                        </div>
+                      </div>
                   </form>
                 </div>
               </div>
@@ -79,7 +83,7 @@
               <h4>Title</h4>
               <input type="text" ng-model="blog.post.title"/>
               <h4>Body</h4>
-              <textarea ng-model="blog.post.body" ng-list="/\n/" rows="10"></textarea>
+              <textarea ng-model="blog.post.body" rows="10"></textarea>
               <label for="">Featured Image URL</label>
               <input type="text" ng-model="blog.post.image" placeholder="http://placekitten.com/g/2000/600" />
               <input type="submit" value="Submit" />

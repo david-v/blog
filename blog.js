@@ -1,7 +1,7 @@
 (function(){
-  var app = angular.module('blogApp',[]);
-  
-  app.controller('BlogController', ['$http', function($http){
+  var app = angular.module('blogApp', ['ngSanitize']);
+
+  app.controller('BlogController', ['$http', '$sanitize', function($http, $sanitize){
     
     var blog = this;
     blog.title = "AngularJS Blog App";
@@ -12,6 +12,10 @@
 
       blog.posts.forEach(function(post){
         post.expanded = false;
+
+        post.toHtml = function() {
+          return $sanitize.parseAsHtml(post.body);
+        }
         
         post.isExpanded = function() {
           return this.expanded;
@@ -21,10 +25,11 @@
           post.expanded = !post.expanded;
         };
       });
+
+      blog.posts[0].toggle();
     });
     
     blog.selectedTab = 'blog';
-    blog.selectedPost = 0;
     
     blog.selectTab = function(setTab){
       blog.selectedTab = setTab;
@@ -32,14 +37,6 @@
     
     blog.isTabSelected = function(checkTab){
       return blog.selectedTab === checkTab;
-    };
-
-    blog.selectPost = function(setPost){
-      blog.selectedPost = setPost;
-    };
-
-    blog.isPostSelected = function(checkPost){
-      return blog.selectedPost === checkPost;
     };
     
     blog.post = {};
