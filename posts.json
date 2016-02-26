@@ -38,7 +38,7 @@
     "id": 4,
     "title": "Trying out the good old Eclipse",
     "createdOn": "20 Feb 2016",
-    "body": "Okay I got the basics now, time to start using an IDE! I installed the popular Eclipse, and the project wouldn't even build with Maven. It seems like Gradle is smarter from the command line: my packages were all wrong and still run, that's how smart it is. No longer the case when trying to run Maven from Eclipse. I got the dependencies all sorted and finally it's up and running again, and with the <strong>debugger listening</strong>. I do not entirely like Eclipse though, it feels... old. PHPStorm is much nicer",
+    "body": "Okay I got the basics now, time to start using an IDE! <pre><code class=\"language-css\">p { color: red }</code></pre><pre><code class=\"language-javascript\">$(document).ready(function(){\n    $('.parallax').parallax();\n});</code></pre>I installed the popular Eclipse, and the project wouldn't even build with Maven. It seems like Gradle is smarter from the command line: my packages were all wrong and still run, that's how smart it is. No longer the case when trying to run Maven from Eclipse. I got the dependencies all sorted and finally it's up and running again, and with the <strong>debugger listening</strong>. I do not entirely like Eclipse though, it feels... old. PHPStorm is much nicer",
     "tags": ["Java", "Plaza Mayor", "Eclipse"]
 },{
     "id": 3,

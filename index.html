@@ -4,6 +4,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <link rel="stylesheet" type="text/css" href="css/materialize.min.css">
   <link rel="stylesheet" type="text/css" href="css/blog.css">
+  <link rel="stylesheet" type="text/css" href="css/prism.css">
   <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>
   <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular-sanitize.js"></script>
   <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular-animate.js"></script>
@@ -12,6 +13,7 @@
   <script type="text/javascript" src="js/blog.js"></script>
 </head>
 <body ng-app="blogApp">
+
   <div ng-controller="BlogController as blog">
     <div class="topbar">
       <div class="row">
@@ -43,7 +45,7 @@
                     <li ng-repeat="tag in post.tags"><span>{{tag}}</span></li>
                   </ul>
                   <div ng-show="!post.isExpanded()">
-                    <div ng-click="post.toggle()" class="cursor-pointer">
+                    <div ng-click="post.toggle()" class="cursor-pointer tooltipped" data-position="bottom" data-delay="50" data-tooltip="Show me more!">
                       <p ng-bind-html="post.body | limitTo:500"></p>
                     </div>
                     <div ng-click="post.toggle()" class="cursor-pointer">
@@ -52,6 +54,7 @@
                       </p>
                     </div>
                   </div>
+                  
                   <div ng-show="post.isExpanded()">
                     <p ng-bind-html="post.body"></p>
                     <img ng-if="post.image" ng-src="{{post.image}}"/>
@@ -109,11 +112,14 @@
       </div>
     </div>
   </div>
+  <script type="text/javascript" src="js/prism.js" data-manual></script>
   <script type="text/javascript" src="js/materialize.min.js"></script>
   <script type="text/javascript">
     $(document).ready(function(){
       setTimeout(function(){
         $('.scrollspy').scrollSpy();
+        $('.tooltipped').tooltip();
+        Prism.highlightAll();
       }, 1000);
       $('.table-of-contents').pushpin({ top: ($('.table-of-contents').offset().top - 20) });
     });
