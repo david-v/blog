@@ -1,9 +1,3 @@
-/*
-
-Simple blog front end demo in order to learn AngularJS - You can add new posts, add comments, and like posts.
-
-*/
-
 (function(){
   var app = angular.module('blogApp',[]);
   
@@ -13,29 +7,48 @@ Simple blog front end demo in order to learn AngularJS - You can add new posts, 
     blog.title = "AngularJS Blog App";
     
     blog.posts = {};
-    $http.get('https://s3-us-west-2.amazonaws.com/s.cdpn.io/110131/posts_1.json').success(function(data){
+    $http.get('posts.json').success(function(data){
       blog.posts = data;
+
+      blog.posts.forEach(function(post){
+        post.expanded = false;
+        
+        post.isExpanded = function() {
+          return this.expanded;
+        };
+
+        post.toggle = function() {
+          post.expanded = !post.expanded;
+        };
+      });
     });
     
-    blog.tab = 'blog';
+    blog.selectedTab = 'blog';
+    blog.selectedPost = 0;
     
     blog.selectTab = function(setTab){
-      blog.tab = setTab;
-      console.log(blog.tab)
+      blog.selectedTab = setTab;
     };
     
-    blog.isSelected = function(checkTab){
-      return blog.tab === checkTab;
+    blog.isTabSelected = function(checkTab){
+      return blog.selectedTab === checkTab;
+    };
+
+    blog.selectPost = function(setPost){
+      blog.selectedPost = setPost;
+    };
+
+    blog.isPostSelected = function(checkPost){
+      return blog.selectedPost === checkPost;
     };
     
     blog.post = {};
     blog.addPost = function(){
       blog.post.createdOn = Date.now();
       blog.post.comments = [];
-      blog.post.likes = 0;
       blog.posts.unshift(this.post);
-      blog.tab = 0;
-      blog.post ={};
+      blog.selectedPost = 0;
+      blog.post = {};
     };   
     
   }]);
@@ -45,7 +58,7 @@ Simple blog front end demo in order to learn AngularJS - You can add new posts, 
     this.addComment = function(post){
       this.comment.createdOn = Date.now();
       post.comments.push(this.comment);
-      this.comment ={};
+      this.comment = {};
     };
   });
  

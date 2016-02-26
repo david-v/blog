@@ -37,16 +37,16 @@ ul.post-grid {
 ul.post-grid li {
   padding: 20px;
   cursor: pointer;
-  transition: background linear 0.5s;
+  /*transition: background linear 0.5s;*/
   border-bottom: 1px solid #3a8bab;
 }
-ul.post-grid li:hover {
+/*ul.post-grid li:hover {
   background: #3a8bab;
   color: white;
 }
 ul.post-grid li:hover h3 {
   color: white;
-}
+}*/
 .content {
   width: 100%;
   position: relative;
@@ -100,4 +100,26 @@ textarea {
 }
 img {
   max-width: 100%;
+}
+
+ul.tags {
+  display: inline;
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+ul.tags li {
+  display: inline-block;
+  border: none;
+  padding: 0px 5px;
+  margin: 0;
+}
+
+ul.tags li span {
+  padding: 2px 5px;
+  margin-left: 5px;
+  margin: 0px;
+  border: 1px #79B9D2 solid;
+  color: #79B9D2;
 }
