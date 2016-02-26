@@ -59,6 +59,9 @@ h3 {
   padding: 20px 5px;
   border-bottom: 1px #79B9D2 solid;
 }
+.comments h5 {
+  margin-top: 40px;
+}
 .comments textarea {
   height: 8rem;
 }

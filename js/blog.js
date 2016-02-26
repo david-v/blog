@@ -27,15 +27,6 @@
       return blog.selectedTab === checkTab;
     };
     
-    blog.post = {};
-    blog.addPost = function(){
-      blog.post.createdOn = Date.now();
-      blog.post.comments = [];
-      blog.posts.unshift(this.post);
-      blog.selectedPost = 0;
-      blog.post = {};
-      $('.scrollspy').scrollSpy();
-    };
   }]);
   
   app.controller('CommentController', function(){

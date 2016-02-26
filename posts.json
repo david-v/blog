@@ -6,7 +6,7 @@
     "tags": ["Google", "GAE", "App Engine", "Cloud Computing", "Auto Scaling", "Plaza Mayor", "Spring", "Jetty"]
 },{
     "id": 7,
-    "title": "6666 the number of the Spanish Beast",
+    "title": "6666 the number of the Beast",
     "createdOn": "23 Feb 2016",
     "body": "All 3 adapters ['Jdbc', 'Jpa', 'SpringDataJpa'] up and running. I started with Jdbc, doing it the hard way to learn. Just the way I like. Then moved onto Hibernate, which is actually pretty nice. It feels sooo much like Doctrine. With Intellij I can just Alt+Spacebar and see what Annotations do anyways, so it doesn't seem 'black magic' anymore.</br></br>Also, just noticed that my town <strong>Segura de los Baños</strong> happened to be id. <strong>6666</strong> of all towns in Spain scraped with my Python script. HOW COOL IS THAT.",
     "tags": ["Java", "Spring", "Plaza Mayor", "Hibernate"],
@@ -42,7 +42,7 @@
     "tags": ["Java", "Plaza Mayor", "Eclipse"]
 },{
     "id": 3,
-    "title": "My new nemesis: XML + Annotations",
+    "title": "My new nemesis: XML",
     "createdOn": "19 Feb 2016",
     "body": "For now I've managed to move the DB connection to a Singleton. With Spring handling the Front Controller, the start point to my requests is the Controller actions themselves, so I had to use the 'magic' of [ @Autowired JdbcTemplate jdbcTemplate; ] which I hate.</br></br>I just don't like annotations at this point, coming from PHP where I know what my app does from the first line of index.php to the very end of a request, there's too much XML and hidden configuration that Spring handles for you. I want to avoid it when possible (for now).",
     "tags": ["Java", "Plaza Mayor", "Singleton", "XML", "Annotations"],
