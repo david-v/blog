@@ -3,8 +3,7 @@
     "title": "Google App Engine",
     "createdOn": "24 Feb 2016",
     "body": "Google App Engine running! I've deployed the app to: <a target='_blank' href='https://plaza-mayor.appspot.com/towns/Segura'>https://plaza-mayor.appspot.com/towns/Segura</a></br></br>It was quite difficult to make this run. A lot harder than Google's 5 min tutorial to deploy a Hello World Servlet with no framework. I had to downgrade to JDK 7. Then use Jetty instead of Tomcat, so I had to learn it too, that and configure Intellij. It also required changes in the codebase: cache, logging system. But probably the worst was a <a target='_blank' href='https://jira.spring.io/browse/SPR-13829'>BUG in my version of Spring: 4.2.4</a> that makes GAE not run. I had to downgrade to 4.1.3</br></br>It's pretty nice that Google's implementation of a SQL database is MySQL (could have been anything else!) so it still works with the JDBC Dialects that I had configured, at least I didn't have to change that... I can now go to bed knowing that I just gave birth to a proper web service to find towns in Spain. I'll think of what to do with it tomorrow.",
-    "tags": ["Google", "GAE", "App Engine", "Cloud Computing", "Auto Scaling", "Plaza Mayor", "Spring", "Jetty"],
-    "comments": []
+    "tags": ["Google", "GAE", "App Engine", "Cloud Computing", "Auto Scaling", "Plaza Mayor", "Spring", "Jetty"]
 },{
     "id": 7,
     "title": "6666 the number of the Spanish Beast",
@@ -22,8 +21,7 @@
     "title": "Python scraper for Wikipedia",
     "createdOn": "22 Feb 2016",
     "body": "Okay now that my IDE is sorted, I feel that I can start properly coding at last! I needed to start populating my database with some real stuff to try the speed of querying.</br></br>I've written a <strong>Python script to scrape Wikipedia</strong> for data about all towns and regions in Spain, and dump it to MySQL. Why Python? Cause I had never tried it before. I compared the data obtained with the official source from INE (Instituto Nacional de Estadistica) website and it's all good!",
-    "tags": ["Plaza Mayor", "Python", "MySQL", "Scraper", "Wikipedia"],
-    "comments": []
+    "tags": ["Plaza Mayor", "Python", "MySQL", "Scraper", "Wikipedia"]
 },{
     "id": 5,
     "title": "Intellij to the rescue",
@@ -41,8 +39,7 @@
     "title": "Trying out the good old Eclipse",
     "createdOn": "20 Feb 2016",
     "body": "Okay I got the basics now, time to start using an IDE! I installed the popular Eclipse, and the project wouldn't even build with Maven. It seems like Gradle is smarter from the command line: my packages were all wrong and still run, that's how smart it is. No longer the case when trying to run Maven from Eclipse. I got the dependencies all sorted and finally it's up and running again, and with the <strong>debugger listening</strong>. I do not entirely like Eclipse though, it feels... old. PHPStorm is much nicer",
-    "tags": ["Java", "Plaza Mayor", "Eclipse"],
-    "comments": []
+    "tags": ["Java", "Plaza Mayor", "Eclipse"]
 },{
     "id": 3,
     "title": "My new nemesis: XML + Annotations",
@@ -61,7 +58,7 @@
     ]
 },{
     "id": 2,
-    "title": "So far so good wtih Spring",
+    "title": "So far so good with Spring",
     "createdOn": "18 Feb 2016",
     "body": "Well this is nice, much easier than I thought to get a couple of routes working. It took me about the same time than with any PHP framework. Spring's syntax is so similar to Symfony, with annotations and everything (not a fan of this though). For what I've read, Hibernate will be easy pissy, knowing Doctrine.",    "tags": ["Java", "Plaza Mayor", "Spring"],
     "comments": [

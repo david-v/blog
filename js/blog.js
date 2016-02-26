@@ -4,23 +4,15 @@
   app.controller('BlogController', ['$http', '$sanitize', function($http, $sanitize){
     
     var blog = this;
-    blog.title = "AngularJS Blog App";
+    blog.title = "david.veli!la";
     
-    blog.posts = {};
-    $http.get('posts.json').success(function(data){
-      blog.posts = data;
-
-      blog.posts.forEach(function(post){
-        post.expanded = false;
-        
-        post.isExpanded = function() {
-          return this.expanded;
-        };
-
-        post.toggle = function() {
-          post.expanded = !post.expanded;
-        };
-      });
+    blog.posts = [];
+    $http.get('posts.json').success(function(allPostsData){
+      for (var i = 0; i < allPostsData.length; i++) {
+        var postData = allPostsData[i];
+        var post = new Post(postData);
+        blog.posts.push(post);
+      }
 
       blog.posts[0].toggle();
     });
@@ -42,8 +34,8 @@
       blog.posts.unshift(this.post);
       blog.selectedPost = 0;
       blog.post = {};
-    };   
-    
+      $('.scrollspy').scrollSpy();
+    };
   }]);
   
   app.controller('CommentController', function(){

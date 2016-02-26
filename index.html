@@ -1,99 +1,121 @@
 <html>
 <head>
-  <link rel="stylesheet" type="text/css" href="blog.css">
+  <!--Let browser know website is optimized for mobile-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="stylesheet" type="text/css" href="css/materialize.min.css">
+  <link rel="stylesheet" type="text/css" href="css/blog.css">
   <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>
   <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular-sanitize.js"></script>
   <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular-animate.js"></script>
-  <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
-  <script type="text/javascript" src="blog.js"></script>
+  <script type="text/javascript" src="//code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script type="text/javascript" src="js/post.js"></script>
+  <script type="text/javascript" src="js/blog.js"></script>
 </head>
 <body ng-app="blogApp">
   <div ng-controller="BlogController as blog">
     <div class="topbar">
-      <div class="container">
-        <div class="row">
-          <div class="col-s-4">
-            <h1 ng-click="blog.selectTab('blog')" class="push-left">{{blog.title}}</h1>
-          </div>
-          <div class="offset-s-4 col-s-4">
-            <nav role='navigation' class="push-right">
-              <ul>
-                <li><a href="#" ng-click="blog.selectTab('blog')">See All Posts</a></li> //
-                <li><a href="#" ng-click="blog.selectTab('new')">Add New Post</a></li>
-              </ul>
-            </nav> 
-          </div>
+      <div class="row">
+        <div class="col s4">
+          <h1 ng-click="blog.selectTab('blog')">{{blog.title}}</h1>
+        </div>
+        <div class="col s4">
+          <nav role='navigation'>
+            <ul>
+              <li><a href="#" ng-click="blog.selectTab('blog')">See All Posts</a></li>
+              <li><a href="#" ng-click="blog.selectTab('new')">Add New Post</a></li>
+            </ul>
+          </nav> 
         </div>
       </div>
     </div>
-    <div class="content">
-      <div class="container">
-        <div class="row">
+
+    <div class="container">
+      <div class="row">
+        <div class="col s12 m9 l9">
           <ul class="post-grid" ng-show="blog.isTabSelected('blog')">
-            <li ng-repeat="post in blog.posts" class="col-s-4" ng-class="{ 'reset-s' : $index%3==0 }">
-              <div ng-click="post.toggle()" class="cursor-pointer">
-                <h3>{{post.title}}</h3>
-                <cite>{{post.createdOn}}</cite>
-              </div>
-              <ul class="tags">
-                <li ng-repeat="tag in post.tags"><span>{{tag}}</span></li>
-              </ul>
-              <div ng-show="!post.isExpanded()">
+            <li ng-repeat="post in blog.posts">
+              <div id="post-{{post.id}}" class="section scrollspy">
                 <div ng-click="post.toggle()" class="cursor-pointer">
-                  <p ng-bind-html="post.body | limitTo:500"></p>
+                  <h3>{{post.title}}</h3>
+                  <cite>{{post.createdOn}}</cite>
                 </div>
-                <div ng-click="post.toggle()" class="cursor-pointer">
-                  <p class="fa fa-comment push-left" ng-show="{{post.comments.length}} > 0">
-                    {{post.comments.length}} comment<span ng-show="{{post.comments.length}} != 1">s</span>
-                  </p>
-                </div>
-              </div>
-              <div ng-show="post.isExpanded()">
-                <p ng-bind-html="post.body"></p>
-                <img src="{{post.image}}" ng-show="{{post.image}}"/>
-                <div class="comments" ng-controller="CommentController as commentCtrl">
+                <ul class="tags">
+                  <li ng-repeat="tag in post.tags"><span>{{tag}}</span></li>
+                </ul>
+                <div ng-show="!post.isExpanded()">
                   <div ng-click="post.toggle()" class="cursor-pointer">
-                    <h4 ng-show="post.comments.length > 0">Comments</h4>
-                    <ul>
-                     <li ng-repeat="comment in post.comments">
-                       "{{comment.body}}"
-                       <cite>- <b>{{comment.author}}</b></cite>
-                     </li>
-                    </ul>
+                    <p ng-bind-html="post.body | limitTo:500"></p>
                   </div>
-                  <form name="commentForm" ng-submit="commentForm.$valid && commentCtrl.addComment(post)" novalidate>
-                    <h4>Add Comment</h4>
-                      <textarea ng-model="commentCtrl.comment.body" cols="30" rows="5" required></textarea>
-                      <label for="">by:</label>
+                  <div ng-click="post.toggle()" class="cursor-pointer">
+                    <p class="fa fa-comment push-left" ng-show="{{post.comments.length}} > 0">
+                      {{post.comments.length}} comment<span ng-show="{{post.comments.length}} != 1">s</span>
+                    </p>
+                  </div>
+                </div>
+                <div ng-show="post.isExpanded()">
+                  <p ng-bind-html="post.body"></p>
+                  <img ng-if="post.image" ng-src="{{post.image}}"/>
+                  <div class="comments" ng-controller="CommentController as commentCtrl">
+                    <div ng-click="post.toggle()" class="cursor-pointer">
+                      <h4 ng-show="post.comments.length > 0">Comments</h4>
+                      <ul>
+                       <li ng-repeat="comment in post.comments">
+                         "{{comment.body}}"
+                         <cite>- <b>{{comment.author}}</b></cite>
+                       </li>
+                      </ul>
+                    </div>
+                    <form name="commentForm" ng-submit="commentForm.$valid && commentCtrl.addComment(post)" novalidate>
                       <div class="row">
-                        <div class="col-md-4">
+                        <div class="col s12 m12 l12">
+                          <h6>Add Comment</h6>
+                          <textarea ng-model="commentCtrl.comment.body" cols="30" rows="5" required></textarea>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col s12 m6 l6">
                           <input type="text" ng-model="commentCtrl.comment.author" required placeholder="Name"/>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col s12 m6 l6">
                           <input type="submit" value="Submit" />
                         </div>
                       </div>
-                  </form>
+                    </form>
+                  </div>
                 </div>
               </div>
             </li>
           </ul>
-          
-          <div class="post" ng-show="blog.isTabSelected('new')">
-            <h2>Add New Post</h2>
-            <form name="postForm" ng-submit=" blog.addPost()" novalidate>
-              <h4>Title</h4>
-              <input type="text" ng-model="blog.post.title"/>
-              <h4>Body</h4>
-              <textarea ng-model="blog.post.body" rows="10"></textarea>
-              <label for="">Featured Image URL</label>
-              <input type="text" ng-model="blog.post.image" placeholder="http://placekitten.com/g/2000/600" />
-              <input type="submit" value="Submit" />
-            </form>
-          </div>
+        </div>
+        <div class="col hide-on-small-only m3 l3">
+          <ul class="section table-of-contents">
+            <li ng-repeat="post in blog.posts"><a href="#post-{{post.id}}">{{post.title}}</a></li>
+          </ul>
+        </div>
+        
+        <div class="post" ng-show="blog.isTabSelected('new')">
+          <h2>Add New Post</h2>
+          <form name="postForm" ng-submit=" blog.addPost()" novalidate>
+            <h4>Title</h4>
+            <input type="text" ng-model="blog.post.title"/>
+            <h4>Body</h4>
+            <textarea ng-model="blog.post.body" rows="10"></textarea>
+            <label for="">Featured Image URL</label>
+            <input type="text" ng-model="blog.post.image" placeholder="http://placekitten.com/g/2000/600" />
+            <input type="submit" value="Submit" />
+          </form>
         </div>
       </div>
     </div>
   </div>
+  <script type="text/javascript" src="js/materialize.min.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function(){
+      setTimeout(function(){
+        $('.scrollspy').scrollSpy();
+      }, 1000);
+      $('.table-of-contents').pushpin({ top: $('.table-of-contents').offset().top });
+    });
+  </script>
 </body>
 </html>
