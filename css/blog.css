@@ -120,3 +120,18 @@ ul.tags li span {
   border: 1px #79B9D2 solid;
   color: #79B9D2;
 }
+
+.social-link {
+  padding: 0;
+  margin: 0;
+}
+
+.social-link img {
+  max-width: 30px;
+}
+
+.social-link span {
+  text-decoration: none;
+  color: white;
+  padding: 10px;
+}
