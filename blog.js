@@ -12,10 +12,6 @@
 
       blog.posts.forEach(function(post){
         post.expanded = false;
-
-        post.toHtml = function() {
-          return $sanitize.parseAsHtml(post.body);
-        }
         
         post.isExpanded = function() {
           return this.expanded;
