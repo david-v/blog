@@ -54,7 +54,7 @@ h3 {
   margin: 0;
   padding: 0;
 }
-.comments ul li {
+.comments ul li.comment {
   list-style-type: none;
   padding: 20px 5px;
   border-bottom: 1px #79B9D2 solid;
@@ -65,8 +65,8 @@ h3 {
 .comments textarea {
   height: 8rem;
 }
-.comments input[type=submit] {
-  margin-top: 12px;
+.comments input[type=text] {
+  margin-top: -18px;
 }
 .post.ng-hide {
   opacity: 0;

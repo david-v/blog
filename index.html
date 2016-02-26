@@ -62,9 +62,9 @@
                       <div ng-click="post.toggle()" class="cursor-pointer">
                         <h5 ng-show="post.comments.length > 0">Comments</h5>
                         <ul>
-                         <li ng-repeat="comment in post.comments">
-                           "{{comment.body}}"
-                           <cite>- <b>{{comment.author}}</b></cite>
+                         <li ng-repeat="comment in post.comments" class="comment">
+                            <cite><b>{{comment.author}}</b></cite> - <cite>{{comment.createdOn | date}}</cite>
+                            <p>{{comment.body}}</p>
                          </li>
                         </ul>
                       </div>
@@ -79,8 +79,17 @@
                           <div class="col s12 m6 l6">
                             <input type="text" ng-model="commentCtrl.comment.author" required placeholder="Name"/>
                           </div>
-                          <div class="col s12 m6 l6">
-                            <input type="submit" value="Submit" />
+                          <div class="col s6 m3 l3">
+                            <span>1 + <a class='dropdown-button btn' data-activates='dropdown-{{post.id}}'>n</a> = {{1 + (post.id % 3)}}</span>
+                            <ul id='dropdown-{{post.id}}' class='dropdown-content'>
+                              <li><a href="#!">0</a></li>
+                              <li><a href="#!">1</a></li>
+                              <li><a href="#!">2</a></li>
+                              <li><a href="#!">3</a></li>
+                            </ul>
+                          </div>
+                          <div class="col s6 m3 l3">
+                            <input class="btn" type="submit" value="submit"/>
                           </div>
                         </div>
                       </form>
@@ -89,19 +98,6 @@
                 </div>
               </li>
             </ul>
-          </div>
-
-          <div class="post" ng-show="blog.isTabSelected('new')">
-            <h2>Add New Post</h2>
-            <form name="postForm" ng-submit=" blog.addPost()" novalidate>
-              <h4>Title</h4>
-              <input type="text" ng-model="blog.post.title"/>
-              <h4>Body</h4>
-              <textarea ng-model="blog.post.body" rows="10"></textarea>
-              <label for="">Featured Image URL</label>
-              <input type="text" ng-model="blog.post.image" placeholder="http://placekitten.com/g/2000/600" />
-              <input type="submit" value="Submit" />
-            </form>
           </div>
         </div>
         <div class="col hide-on-small-only m3 l3">
@@ -120,6 +116,11 @@
         $('.scrollspy').scrollSpy();
         $('.tooltipped').tooltip();
         Prism.highlightAll();
+        $('.dropdown-button').dropdown({
+            constrain_width: true,
+            hover: true,
+            belowOrigin: true,
+        });
       }, 1000);
       $('.table-of-contents').pushpin({ top: ($('.table-of-contents').offset().top - 20) });
     });

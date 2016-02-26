@@ -13,7 +13,7 @@
         var post = new Post(postData);
         blog.posts.push(post);
       }
-
+      console.log(Date.now());
       blog.posts[0].toggle();
     });
     
