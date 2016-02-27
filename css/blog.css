@@ -66,34 +66,44 @@ nav {
   margin-top: -15px;
 }
 
+h3 {
+  font-size: 2rem;
+}
+
 @media (min-width: 420px) {
   .topbar h1 {font-size: 2.5rem;}
+  h3 {font-size: 2.2rem;}
 }
 
 @media (min-width: 601px) {
   nav {position: relative;}
   .topbar h1 {font-size: 4.5rem; position: relative; margin-top: 30px;}
-  .topbar h3 {font-size: 1.2rem; margin-left: 220px; margin-top: -15px;}
+  .topbar h3 {font-size: 1.2rem; margin-left: 220px; margin-top: 0px;}
+  h3 {font-size: 2.4rem;}
 }
 
 @media (min-width: 750px) {
   .topbar h1 {font-size: 6rem}
   .topbar h3 {font-size: 1.6rem; margin-left: 235px; margin-top: -10px;}
+  h3 {font-size: 2.6rem;}
 }
 
 @media (min-width: 900px) {
   .topbar h1 {font-size: 7.5rem}
-  .topbar h3 {font-size: 2rem; margin-left: 360px; margin-top: -23px;}
+  .topbar h3 {font-size: 2rem; margin-left: 360px; margin-top: -18px;}
+  h3 {font-size: 2.8rem;}
 }
 
 @media (min-width: 1050px) {
   .topbar h1 {font-size: 9rem}
   .topbar h3 {font-size: 2.5rem; margin-left: 430px; margin-top: -27px;}
+  h3 {font-size: 2.9rem;}
 }
 
 @media (min-width: 1200px) {
   .topbar h1 {font-size: 10.5rem}
   .topbar h3 {font-size: 3rem; margin-left: 500px; margin-top: -30px;}
+  h3 {font-size: 3rem;}
 }
 
 .post {
@@ -221,7 +231,7 @@ ul.tags li span {
 }
 
 #slide-out {
-  top: 57px;
+  top: 56px;
 }
 
 #sidenav-overlay {

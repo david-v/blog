@@ -6,7 +6,7 @@
     var blog = this;
     blog.title = "david.veli!la";
     blog.captcha = 8;
-    
+    blog.date = new Date();
     blog.posts = [];
     blog.tags = [];
 
