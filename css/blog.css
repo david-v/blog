@@ -8,8 +8,12 @@ html {
   cursor: pointer;
 }
 .topbar {
-  background: #79B9D2;
+  background-color: #79B9D2;
   color: white;
+}
+.topbar h1 {
+  margin: 0;
+  padding: 0;
 }
 .topbar nav {
   margin-top: 25px;
@@ -56,6 +60,7 @@ h5 {
   display: inline-block;
   padding: 10px 0;
 }
+
 .comments ul {
   margin: 0;
   padding: 0;
@@ -148,4 +153,27 @@ ul.tags li span {
 
 .left-sidebar {
   margin-top: 50px;
+}
+
+.btn {
+  padding: 0;
+}
+
+@keyframes unhinged {
+  0%  {transform: rotate(0deg);}
+  12% {transform: rotate(240deg);}
+  25% {transform: rotate(125deg);}
+  40% {transform: rotate(220deg);}
+  53% {transform: rotate(145deg);}
+  68% {transform: rotate(200deg);opacity: 1;}
+  82% {transform: translate(-0.5rem, 8.57142857142857rem) rotate(215deg);opacity: 0;}
+  88% {transform: translate(0) rotate(0deg);opacity: 0;}
+  92% {transform: translate(0, -8.57142857142857rem) rotate(0deg);opacity: 0;}
+  100% {transform: rotate(0deg); opacity: 1;}
+}
+
+.name-dot {
+  animation: unhinged 7s 3.5s forwards ease;
+  display: inline-block;
+  transform-origin: 38% 78%;
 }

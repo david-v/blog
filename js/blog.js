@@ -10,7 +10,7 @@
     blog.posts = [];
     blog.tags = [];
 
-    $http.get('posts.json').success(function(allPostsData){
+    $http.get('json/posts.json').success(function(allPostsData){
       for (var i = 0; i < allPostsData.length; i++) {
         var postData = allPostsData[i];
         var post = new Post(postData);
