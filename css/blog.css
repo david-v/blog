@@ -46,7 +46,8 @@ h3 {
 }
 
 h4,
-h5 {
+h5, 
+h6 {
   color: #ee6e73;
 }
 
@@ -192,4 +193,29 @@ ul.tags li span {
   animation: unhinged 7s 3.5s forwards ease;
   display: inline-block;
   transform-origin: 38% 78%;
+}
+
+.burger {
+  display: block;
+}
+
+.burger i {
+  margin-left: -5px;
+  color: #ee6e73;
+  box-sizing: border-box;
+  color: rgb(255, 255, 255)
+  cursor: pointer;
+  display: block;
+  font-family: Material-Design-Icons;
+  font-size: 48.6px;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: normal;
+  height: 64px;
+  line-height: 64px;
+  speak: none
+  text-rendering: auto;
+  transform: matrix(1, 0, 0, 1, 0, 0);
+  width: 48.6094px;
+  -webkit-font-smoothing: antialiased;
 }

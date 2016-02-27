@@ -35,6 +35,7 @@
         <ul class="section tags">
           <li ng-repeat="tag in blog.tags"><span>{{tag}}</span></li>
         </ul>
+        <a href="#" data-activates="slide-out" class="button-collapse burger"><i class="mdi-navigation-menu"></i></a>
       </div>
 
       <div class="col s12 m9 l7">
@@ -44,7 +45,7 @@
               <div id="post-{{post.id}}" class="section scrollspy">
                 <div ng-click="post.toggle()" class="cursor-pointer">
                   <h3>{{post.title}}</h3>
-                  <cite>{{post.createdOn}}</cite>
+                  <h6>{{post.createdOn}}</h6>
                 </div>
                 <ul class="tags">
                   <li ng-repeat="tag in post.tags"><span>{{tag}}</span></li>
@@ -154,9 +155,10 @@
         $(window).scroll(function() {
           var scrolled = $(document).scrollTop();
           $('.table-of-contents').css('top', (parseInt(scrolled) * -0.03) + 'px');
-        }); 
+        });
       }, 1000);
       $('.table-of-contents').pushpin({ top: ($('.table-of-contents').offset().top - 20) });
+      $('.burger').pushpin({ top: ($('.burger').offset().top + 370) });
     });
   </script>
 </body>
