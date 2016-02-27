@@ -17,7 +17,11 @@
   <div ng-controller="BlogController as blog">
 
     <div class="topbar">
-      <h1 ng-click="blog.selectTab('blog')">david.veli<span class="name-dot">!</span>la</h1>
+      <h1 ng-click="blog.selectTab('blog')">
+        <span>david</span><span>.veli</span><span class="name-dot">!</span><span>la</span>
+      </h1>
+      <h3 class="hide-on-small-only">(VEH - 'LEE - YAH)</h3>
+      <h2 class="hide-on-small-only">Software Engineer</h2>
     </div>
 
     <nav>
@@ -52,7 +56,7 @@
                 </ul>
                 <div ng-show="!post.isExpanded()">
                   <div ng-click="post.toggle()" class="cursor-pointer tooltipped" data-position="bottom" data-delay="50" data-tooltip="Show me more!">
-                    <p ng-bind-html="post.body | limitTo:500"></p>
+                    <p>{{post.body | limitTo:500}}...</p>
                   </div>
                   <div ng-click="post.toggle()" class="cursor-pointer">
                     <h6 ng-show="{{post.comments.length}} > 0">
@@ -83,7 +87,7 @@
                       </div>
                       <div class="row">
                         <div class="col s12 m6 l6">
-                          <input type="text" ng-model="commentCtrl.comment.author" required placeholder="Name"/>
+                          <input type="text" ng-model="commentCtrl.comment.author" required placeholder="Your Name"/>
                         </div>
                         <div class="col s6 m3 l3">
                           <span>1 + </span>
@@ -117,7 +121,7 @@
       <div class="row">
         <div class="col l6 s12">
           <h5 class="white-text">This is the end.</h5>
-          <cite>In fact, the beginning: you just read my first entry.</cite>
+          <cite>In fact, the beginning, if you think about it :)</cite>
           <p class="grey-text text-lighten-4">I wrote this blog in Angular. It uses a script that finds contents in my Github repositories and publishes them automatically as blog posts. You can find (and use) its source code in Github.</p>
         </div>
         <div class="col l4 offset-l2 s12">
@@ -152,13 +156,13 @@
             closeOnClick: true // Closes side-nav on <a> clicks, useful for Angular/Meteor
           }
         );
+        $('.table-of-contents').pushpin({ top: ($('.table-of-contents').offset().top - 20) });
+        $('.burger').pushpin({ top: ($('.burger').offset().top) });
         $(window).scroll(function() {
           var scrolled = $(document).scrollTop();
           $('.table-of-contents').css('top', (parseInt(scrolled) * -0.03) + 'px');
         });
       }, 1000);
-      $('.table-of-contents').pushpin({ top: ($('.table-of-contents').offset().top - 20) });
-      $('.burger').pushpin({ top: ($('.burger').offset().top + 370) });
     });
   </script>
 </body>

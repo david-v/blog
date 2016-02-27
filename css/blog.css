@@ -15,17 +15,7 @@ html {
   margin: 0;
   padding: 0;
 }
-.topbar nav {
-  margin-top: 25px;
-}
-.topbar nav ul {
-  padding: 0;
-  margin: 0;
-}
-.topbar nav ul li a {
-  color: white;
-  text-decoration: none;
-}
+
 ul.post-grid {
   margin: 0;
   padding: 0;
@@ -49,6 +39,61 @@ h4,
 h5, 
 h6 {
   color: #ee6e73;
+}
+
+.topbar h1,
+.topbar h2,
+.topbar h3 {
+  text-align: center;
+}
+
+nav {
+  z-index: 97;
+  position: fixed;
+}
+
+.topbar h1 {
+  z-index: 98;
+  position: fixed;
+  right: 30px;
+  top: 10px;
+  font-size: 2.0rem;
+}
+
+.topbar h3 {
+  font-size: 0.5rem;
+  margin-left: 500px;
+  margin-top: -15px;
+}
+
+@media (min-width: 420px) {
+  .topbar h1 {font-size: 2.5rem;}
+}
+
+@media (min-width: 601px) {
+  nav {position: relative;}
+  .topbar h1 {font-size: 4.5rem; position: relative; margin-top: 30px;}
+  .topbar h3 {font-size: 1.2rem; margin-left: 220px; margin-top: -15px;}
+}
+
+@media (min-width: 750px) {
+  .topbar h1 {font-size: 6rem}
+  .topbar h3 {font-size: 1.6rem; margin-left: 235px; margin-top: -10px;}
+}
+
+@media (min-width: 900px) {
+  .topbar h1 {font-size: 7.5rem}
+  .topbar h3 {font-size: 2rem; margin-left: 360px; margin-top: -23px;}
+}
+
+@media (min-width: 1050px) {
+  .topbar h1 {font-size: 9rem}
+  .topbar h3 {font-size: 2.5rem; margin-left: 430px; margin-top: -27px;}
+}
+
+@media (min-width: 1200px) {
+  .topbar h1 {font-size: 10.5rem}
+  .topbar h3 {font-size: 3rem; margin-left: 500px; margin-top: -30px;}
 }
 
 .post {
@@ -175,6 +220,13 @@ ul.tags li span {
   padding: 0;
 }
 
+#slide-out {
+  top: 57px;
+}
+
+#sidenav-overlay {
+  display: none;
+}
 
 @keyframes unhinged {
   0%  {transform: rotate(0deg);}
