@@ -61,6 +61,10 @@ h5 {
   padding: 10px 0;
 }
 
+.comments form {
+  border-left: 1px #79B9D2 solid;
+}
+
 .comments ul {
   margin: 0;
   padding: 0;
@@ -70,6 +74,11 @@ h5 {
   padding: 20px 5px;
   border-bottom: 1px #79B9D2 solid;
 }
+
+.comments ul li.comment:last-child{
+  border-bottom: none;
+}
+
 .comments h5 {
   margin-top: 40px;
 }
@@ -156,8 +165,15 @@ ul.tags li span {
 }
 
 .btn {
+  background-color: #79B9D2;
   padding: 0;
 }
+
+.btn:hover {
+  background-color: #69A9C2;
+  padding: 0;
+}
+
 
 @keyframes unhinged {
   0%  {transform: rotate(0deg);}
@@ -169,7 +185,7 @@ ul.tags li span {
   82% {transform: translate(-0.5rem, 8.57142857142857rem) rotate(215deg);opacity: 0;}
   88% {transform: translate(0) rotate(0deg);opacity: 0;}
   92% {transform: translate(0, -8.57142857142857rem) rotate(0deg);opacity: 0;}
-  100% {transform: rotate(0deg); opacity: 1;}
+  100% {transform: rotate(10deg); opacity: 1;}
 }
 
 .name-dot {
