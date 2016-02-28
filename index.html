@@ -46,15 +46,17 @@
 
     <div class="row">
 
-      <div class="col hide-on-med-and-down l2 left-sidebar">
-        <h5>Filters</h5>
-        <ul class="section tags">
-          <li ng-repeat="tag in blog.tags"><span>{{tag}}</span></li>
-        </ul>
+      <div class="col hide-on-small-only l2 m1 left-sidebar">
+        <div class="hide-on-med-and-down">
+          <h5>Filters</h5>
+          <ul class="section tags">
+            <li ng-repeat="tag in blog.tags"><span>{{tag}}</span></li>
+          </ul>
+        </div>
         <a href="#" data-activates="slide-out" class="button-collapse burger"><i class="mdi-navigation-menu"></i></a>
       </div>
 
-      <div class="col s12 m9 l7">
+      <div class="col s12 m8 l7">
         <div class="post-grid" ng-show="blog.isTabSelected('blog')">
           <ul>
             <li ng-repeat="post in blog.posts">
