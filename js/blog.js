@@ -1,5 +1,24 @@
 (function(){
-  var app = angular.module('blogApp', ['ngSanitize']);
+  angular.module('blogFilters', [])
+    .filter('tagFilter', function () {
+      return function (items, tags) {
+        if (tags.length < 1) {
+          return items;
+        }
+        var filtered = [];
+        (items || []).forEach(function (item) {
+          var matches = tags.some(function (tag) {
+            return (item.tags.indexOf(tag) > -1);
+          });
+          if (matches) {
+            filtered.push(item);
+          }
+        });
+        return filtered;
+      };
+    });
+
+  var app = angular.module('blogApp', ['ngSanitize', 'blogFilters']);
 
   app.controller('BlogController', ['$http', '$sanitize', function($http, $sanitize){
     
@@ -8,7 +27,8 @@
     blog.captcha = 8;
     blog.date = new Date();
     blog.posts = [];
-    blog.tags = [];
+    blog.allTags = [];
+    blog.selectedTags = [];
 
     $http.get('json/posts-2.json').success(function(allPostsData){
       for (var i = 0; i < allPostsData.length; i++) {
@@ -16,14 +36,13 @@
         var post = new Post(postData);
         for (var j = 0; j < post.tags.length; j++) {
           var tag = post.tags[j];
-          if (-1 == blog.tags.indexOf(tag)) {
-            blog.tags.push(tag);
+          if (-1 == blog.allTags.indexOf(tag)) {
+            blog.allTags.push(tag);
           }
         }
         blog.posts.push(post);
       }
       blog.posts[0].toggle();
-      console.log(blog.tags);
     });
     
     blog.selectedTab = 'blog';
@@ -35,6 +54,19 @@
     blog.isTabSelected = function(checkTab){
       return blog.selectedTab === checkTab;
     };
+
+    blog.toggleTag = function(tag){
+      var index = blog.selectedTags.indexOf(tag);
+      if (index > -1) {
+        blog.selectedTags.splice(index, 1);
+      } else {
+        blog.selectedTags.push(tag);
+      }
+    };
+
+    blog.isTagSelected = function(tag){
+      return (blog.selectedTags.indexOf(tag) > -1);
+    }
     
   }]);
   
@@ -50,5 +82,5 @@
       return true;
     };
   });
- 
+
 })();

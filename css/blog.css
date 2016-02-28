@@ -215,11 +215,17 @@ ul.tags li {
 }
 
 ul.tags li span {
+  cursor: pointer;
   padding: 2px 5px;
   margin-left: 5px;
   margin: 0px;
   border: 1px #79B9D2 solid;
   color: #79B9D2;
+}
+
+ul.tags li span.active {
+  border-width: 3px;
+  font-weight: bold;
 }
 
 .social-link {

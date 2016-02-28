@@ -54,7 +54,9 @@
         <div class="hide-on-med-and-down">
           <h5>Filters</h5>
           <ul class="section tags">
-            <li ng-repeat="tag in blog.tags"><span>{{tag}}</span></li>
+            <li ng-repeat="tag in blog.allTags" ng-click="blog.toggleTag(tag)">
+              <span class="{{blog.isTagSelected(tag) ? 'active' : ''}}">{{tag}}</span>
+            </li>
           </ul>
         </div>
         <a href="#" data-activates="slide-out" class="button-collapse burger"><i class="mdi-navigation-menu"></i></a>
@@ -63,14 +65,16 @@
       <div class="col s12 m8 l7">
         <div class="post-grid" ng-show="blog.isTabSelected('blog')">
           <ul>
-            <li ng-repeat="post in blog.posts">
+            <li ng-repeat="post in blog.posts | tagFilter : blog.selectedTags">
               <div id="post-{{post.id}}" class="section scrollspy">
                 <div ng-click="post.toggle()" class="cursor-pointer">
                   <h3>{{post.title}}</h3>
                   <h6>{{post.createdOn}}</h6>
                 </div>
                 <ul class="tags">
-                  <li ng-repeat="tag in post.tags"><span>{{tag}}</span></li>
+                  <li ng-repeat="tag in post.tags" ng-click="blog.toggleTag(tag)">
+                    <span class="{{blog.isTagSelected(tag) ? 'active' : ''}}">{{tag}}</span>
+                  </li>
                 </ul>
                 <div ng-show="!post.isExpanded()">
                   <div ng-click="post.toggle()" class="cursor-pointer tooltipped" 
@@ -128,7 +132,9 @@
 
       <div class="col hide-on-small-only m3 l3 toc-container">
         <ul class="section table-of-contents">
-          <li ng-repeat="post in blog.posts"><a href="#post-{{post.id}}">{{post.title}}</a></li>
+          <li ng-repeat="post in blog.posts | tagFilter : blog.selectedTags">
+            <a href="#post-{{post.id}}">{{post.title}}</a>
+          </li>
         </ul>
       </div>
     </div>
