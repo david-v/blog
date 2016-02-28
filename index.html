@@ -69,7 +69,8 @@
                   <li ng-repeat="tag in post.tags"><span>{{tag}}</span></li>
                 </ul>
                 <div ng-show="!post.isExpanded()">
-                  <div ng-click="post.toggle()" class="cursor-pointer tooltipped" data-position="bottom" data-delay="50" data-tooltip="Show me more!">
+                  <div ng-click="post.toggle()" class="cursor-pointer tooltipped" 
+                       data-position="bottom" data-delay="50" data-tooltip="Show me more!">
                     <p ng-bind-html="post.body"></p>
                   </div>
                   <div ng-click="post.toggle()" class="cursor-pointer">
@@ -83,7 +84,7 @@
                   <p ng-bind-html="post.body"></p>
                   <img ng-if="post.image" ng-src="{{post.image}}"/>
                   <div class="comments" ng-controller="CommentController as commentCtrl">
-                    <div ng-click="post.toggle()" class="cursor-pointer">
+                    <div>
                       <h5 ng-show="post.comments.length > 0">Comments</h5>
                       <ul>
                        <li ng-repeat="comment in post.comments" class="comment">
@@ -107,7 +108,6 @@
                           <span>1 + </span>
                           <input type="number" ng-model="commentCtrl.comment.captcha" required placeholder="N"/>
                           <span> = {{1 + (post.id % 8)}}</span>
-                          
                         </div>
                         <div class="col s6 m3 l3">
                           <input class="btn" type="submit" value="send"/>
