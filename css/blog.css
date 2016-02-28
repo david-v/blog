@@ -48,16 +48,26 @@ h6 {
 }
 
 nav {
+  background-color: #3a8bab;
   z-index: 97;
   position: fixed;
 }
 
-.topbar h1 {
+#floating-name {
+  color: white;
   z-index: 98;
   position: fixed;
   right: 30px;
   top: 10px;
   font-size: 2.0rem;
+  margin: 0;
+  padding: 0;
+  width: 250px;
+}
+
+.topbar h1 {
+  font-size: 4.5rem; 
+  margin-top: 30px;
 }
 
 .topbar h2 {
@@ -75,14 +85,14 @@ h3 {
 }
 
 @media (min-width: 420px) {
-  .topbar h1 {font-size: 2.5rem;}
+  #floating-name {font-size: 2.5rem;}
   .topbar h2 {font-size: 2rem;}
   h3 {font-size: 2.2rem;}
 }
 
 @media (min-width: 601px) {
   nav {position: relative;}
-  .topbar h1 {font-size: 4.5rem; position: relative; margin-top: 30px;}
+  #floating-name {left: 10px;}
   .topbar h2 {font-size: 2.3rem;}
   .topbar h3 {font-size: 1.2rem; margin-left: 220px; margin-top: 0px;}
   h3 {font-size: 2.4rem;}

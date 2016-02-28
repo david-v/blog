@@ -16,27 +16,32 @@
 
   <div ng-controller="BlogController as blog">
 
-    <div class="topbar">
-      <h1 ng-click="blog.selectTab('blog')">
+    <!-- <div class="topbar">
+      <h1 class="hide-on-small-only">
         <span>david</span><span>.veli</span><span class="name-dot">!</span><span>la</span>
       </h1>
       <h3 class="hide-on-small-only">(VEH - 'LEE - YAH)</h3>
       <h2 class="hide-on-small-only">Software Engineer</h2>
-    </div>
+    </div> -->
+
+    <h1 id="floating-name">
+      <span>david</span><span>.veli</span><span class="name-dot">!</span><span>la</span>
+    </h1>
 
     <nav>
-      
-        <ul id="nav-mobile" class="right hide-on-small-only">
-          <li><a href="#!">Home</a></li>
-          <li class="active"><a href="#!">Blog</a></li>
-          <li><a href="#!">About me</a></li>
-          <li><a href="#!">Contact</a></li>
-        </ul>
+      <ul id="nav-mobile" class="right hide-on-small-only">
+        <li><a href="#!">Home</a></li>
+        <li class="active"><a href="#!">Blog</a></li>
+        <li><a href="#!">About me</a></li>
+        <li><a href="#!">Contact</a></li>
+      </ul>
 
       <ul id="slide-out" class="side-nav">
         <li><a href="#!">Home</a></li>
         <li><a class="active" href="#!">Blog</a></li>
         <li><a href="#!">Contact</a></li>
+        <li><a href="#!">Scroll to top</a></li>
+        <li><a href="#!">Scroll to bottom</a></li>
         <li><a href="#!">Close menu</a></li>
       </ul>
       <a href="#" data-activates="slide-out" class="button-collapse hide-on-med-and-up">
@@ -175,6 +180,9 @@
         $(window).scroll(function() {
           var scrolled = $(document).scrollTop();
           $('.table-of-contents').css('top', (parseInt(scrolled) * -0.03) + 'px');
+          if (window.innerWidth > 600) {
+            $('#floating-name').css('top', (10 + (parseInt(scrolled) * -1)) + 'px');
+          }
         });
       }, 1000);
     });
