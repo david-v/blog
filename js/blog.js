@@ -20,7 +20,7 @@
 
   var app = angular.module('blogApp', ['ngSanitize', 'blogFilters']);
 
-  app.controller('BlogController', ['$http', '$sanitize', function($http, $sanitize){
+  app.controller('BlogController', ['$http', '$sanitize', function($http){
     
     var blog = this;
     blog.title = "david.veli!la";
