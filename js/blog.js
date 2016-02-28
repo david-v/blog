@@ -67,6 +67,10 @@
       }, 100)
     };
 
+    blog.clearSelectedTags = function(){
+      blog.selectedTags = [];
+    }
+
     blog.isTagSelected = function(tag){
       return (blog.selectedTags.indexOf(tag) > -1);
     }

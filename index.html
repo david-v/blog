@@ -39,6 +39,7 @@
         <li><a href="#!">Home</a></li>
         <li><a class="active" href="#!">Blog</a></li>
         <li><a href="#!">Contact</a></li>
+        <li><a href="#!" ng-click="blog.clearSelectedTags()">Clear tag filters</a></li>
         <li><a href="javascript:window.scrollTo(0,0);">Scroll to top</a></li>
         <li><a href="javascript:window.scrollTo(0,document.body.scrollHeight);">Scroll to bottom</a></li>
         <li><a href="#!">Close menu</a></li>
@@ -53,12 +54,13 @@
       <div class="col hide-on-small-only l2 m1 left-sidebar">
         <div class="hide-on-med-and-down">
           <h5>Filters</h5>
+          <p>Select tags to filter posts by content</p>
+          <p class="cursor-pointer" ng-click="blog.clearSelectedTags()">CLEAR FILTERS</p>
           <ul class="section tags">
             <li ng-repeat="tag in blog.allTags" ng-click="blog.toggleTag(tag)">
               <span class="{{blog.isTagSelected(tag) ? 'active' : ''}}">{{tag}}</span>
             </li>
           </ul>
-          <p>Select tags to filter posts by content</p>
         </div>
         <a href="#" data-activates="slide-out" class="button-collapse burger"><i class="mdi-navigation-menu"></i></a>
       </div>
