@@ -84,6 +84,10 @@ h3 {
   font-size: 2rem;
 }
 
+#slide-out {
+  top: 56px;
+}
+
 @media (min-width: 420px) {
   #floating-name {font-size: 2.5rem;}
   .topbar h2 {font-size: 2rem;}
@@ -96,6 +100,7 @@ h3 {
   .topbar h2 {font-size: 2.3rem;}
   .topbar h3 {font-size: 1.2rem; margin-left: 220px; margin-top: 0px;}
   h3 {font-size: 2.4rem;}
+  #slide-out {top: 64px;}
 }
 
 @media (min-width: 750px) {
@@ -248,10 +253,6 @@ ul.tags li span {
 .btn:hover {
   background-color: #69A9C2;
   padding: 0;
-}
-
-#slide-out {
-  top: 56px;
 }
 
 #sidenav-overlay {
