@@ -181,8 +181,10 @@
             closeOnClick: true // Closes side-nav on <a> clicks, useful for Angular/Meteor
           }
         );
-        $('.table-of-contents').pushpin({ top: ($('.table-of-contents').offset().top - 20) });
-        $('.burger').pushpin({ top: ($('.burger').offset().top) });
+        var toc = $('.table-of-contents');
+        toc.pushpin({ top: (toc.offset().top - 20) });
+        var burger = $('.burger');
+        burger.pushpin({ top: (burger.offset().top) });
         $(window).scroll(function() {
           var scrolled = $(document).scrollTop();
           $('.table-of-contents').css('top', (parseInt(scrolled) * -0.03) + 'px');
