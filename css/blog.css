@@ -251,6 +251,11 @@ ul.tags li span.active {
   margin-top: 50px;
 }
 
+.left-sidebar p {
+  color: #707070;
+  font-size: 0.8rem;
+}
+
 .btn {
   background-color: #79B9D2;
   padding: 0;

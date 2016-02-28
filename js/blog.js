@@ -62,6 +62,9 @@
       } else {
         blog.selectedTags.push(tag);
       }
+      setTimeout(function(){
+        $('.scrollspy').scrollSpy();
+      }, 100)
     };
 
     blog.isTagSelected = function(tag){
