@@ -313,3 +313,11 @@ ul.tags li span.active {
   width: 48.6094px;
   -webkit-font-smoothing: antialiased;
 }
+
+.side-nav a span {
+  float: left;
+}
+
+.side-nav a i {
+  float: right;
+}
