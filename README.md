@@ -1,4 +1,4 @@
-#My Blog
+#Blog - Frontend
 
 [http://david.veli.la/blog](http://david.veli.la/blog/)
 
@@ -8,18 +8,11 @@ My personal blog, which detects new logbook entries in my repositories and publi
 
 **Tech Stack**
 
-FRONT
-
 	Angular JS
 	JSON driven posts
 	jQuery
 	Materialize.css
 	a simple but cute CSS animation
-
-BACK
-	
-	Python
-	Django
 
 **Usage**
 
@@ -34,7 +27,7 @@ If you want to try Angular without external services interaction. (Post samples 
 
 You need a web server with Python support.
 
-	Working on it
+	Python API in a [separate repository](https://github.com/david-v/blog-backend) [Working on it]
 
 ---
 
