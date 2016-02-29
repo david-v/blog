@@ -8,6 +8,8 @@ So I need a blog. I could use Wordpress, as I'm already paying for a web hosting
 
 But who likes easy? I've done Wordpress before, so I want to try something new. I haven't done much front end web development for a while, so let's try Angular!
 
+---
+
 *26 Feb*
 
 Angular is much easier than the beast I was afraid I'd be facing. I said something similar with Spring framework before it got very ugly when I started having [insert big integer number here] issues. But for now I'm optimistic.
@@ -15,6 +17,8 @@ Angular is much easier than the beast I was afraid I'd be facing. I said somethi
 I've done VanillaJS or jQuery web apps before, which are similar to what I want to accomplish, and it took me a lot of DOM manipulation, custom events, and lots of debugging to get something similar to what 50 lines of javascript with Angular can do. After today, I don't think I could live without "ng-binding" anymore <3
 
 The skeleton of my blog is ready: it loads the blog posts from JSON. That will eventually come from a backend, for now a static JSON file does the job. There'll be only 1 endpoint (e.g /api/posts). Worst case? If I ever reach 1000 posts * 1000 characters per post = 1MB of data. When gzipped, not an issue at all.
+
+---
 
 *27 Feb*
 
@@ -26,6 +30,7 @@ I read Materialize's documentation to get ideas to use, and I really liked the S
 
 Something to bare in mind is that since AngularJS has to render the DOM, the typical $(document).onload(function(){do-your-stuff}) doesn't work. I had to wrap my 'do-your-stuff' in a setTimeout of 1 second. Not ideal but it works. Angular will most likely fire some event such 'dom-rendered' that I can use to trigger 'my-stuff'
 
+---
 
 *28 Feb*
 
@@ -36,6 +41,8 @@ I've made a simple CSS animation to play with my surname: Velilla = veli!la = ve
 My blog is now live: [david.veli.la/blog](http://david.veli.la/blog/)  (no backend yet). Just a few tweaks to make it fully responsive, add a title, content metas, and GA tracking. Never forget good old Google Analytics. 
 
 I'll have to add events tracking -as I haven't got links yet. Or maybe explore Angular routing, I'm going to need a URI for my posts individually, having everything in one page is cool, but if someone wanted to share 1 post of mine, they'd need to be able to copy-paste the URL: {base-url}/blog/#my-post-id-here and arrive where they need.
+
+---
 
 *29 Feb*
 
