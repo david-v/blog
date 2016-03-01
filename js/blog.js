@@ -18,9 +18,15 @@
       };
     });
 
-  var app = angular.module('blogApp', ['ngSanitize', 'blogFilters']);
+  var app = angular.module('blogApp', ['ngSanitize', 'blogFilters', 'ngCookies']);
 
-  app.controller('BlogController', ['$http', '$sanitize', function($http){
+  app.config(function($httpProvider) {
+    $httpProvider.defaults.withCredentials = true
+    $httpProvider.defaults.xsrfCookieName = 'csrftoken';
+    $httpProvider.defaults.xsrfHeaderName = 'X-CSRFToken';
+  });
+
+  app.controller('BlogController', ['$http', '$sanitize', '$cookies', function($http, $sanitize, $cookies){
     
     var blog = this;
     blog.title = "david.veli!la";
@@ -30,20 +36,32 @@
     blog.allTags = [];
     blog.selectedTags = [];
 
-    $http.get('json/posts-2.json').success(function(allPostsData){
-      for (var i = 0; i < allPostsData.length; i++) {
-        var postData = allPostsData[i];
-        var post = new Post(postData);
-        for (var j = 0; j < post.tags.length; j++) {
-          var tag = post.tags[j];
-          if (-1 == blog.allTags.indexOf(tag)) {
-            blog.allTags.push(tag);
+    $http({
+      method: 'GET',
+      url: 'http://localhost:8000/blog/posts'
+    }).then(
+      function(response){
+        console.log($cookies.get('csrftoken'));
+        $http.defaults.headers.post['X-CSRFToken'] = $cookies.get('csrftoken');
+
+        allPostsData = response.data;
+        for (var i = 0; i < allPostsData.length; i++) {
+          var postData = allPostsData[i];
+          var post = new Post(postData);
+          for (var j = 0; j < post.tags.length; j++) {
+            var tag = post.tags[j];
+            if (-1 == blog.allTags.indexOf(tag)) {
+              blog.allTags.push(tag);
+            }
           }
+          blog.posts.push(post);
         }
-        blog.posts.push(post);
+        blog.posts[0].toggle();
+      },
+      function(error){
+        console.log(error);
       }
-      blog.posts[0].toggle();
-    });
+    );
     
     blog.selectedTab = 'blog';
     
@@ -77,7 +95,7 @@
     
   }]);
   
-  app.controller('CommentController', function(){
+  app.controller('CommentController', ['$http', '$cookies', function($http, $cookies){
     this.comment = {};
     this.addComment = function(post){
       if ((1 + this.comment.captcha) != (1 + (post.id % 8))) {
@@ -85,9 +103,27 @@
       }
       this.comment.createdOn = Date.now();
       post.comments.push(this.comment);
+
+      $http({
+        method: 'POST',
+        url: 'http://localhost:8000/blog/posts/' + post.id + '/comment',
+        headers: {
+         'Content-Type': 'application/json'
+        }, 
+        data: JSON.stringify({
+          author: this.comment.author,
+          body: this.comment.body
+        })
+      }).then(
+        function(data){
+          console.log('Success posting comment');
+        },
+        function(error){
+          console.log('Error');
+        }
+      );
       this.comment = {};
-      return true;
-    };
-  });
+    }
+  }]);
 
 })();
