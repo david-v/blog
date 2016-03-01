@@ -123,7 +123,7 @@
               <div id="post-{{post.id}}" class="section scrollspy">
                 <div ng-click="post.toggle()" class="cursor-pointer">
                   <h3>{{post.title}}</h3>
-                  <h6>{{post.createdOn}}</h6>
+                  <h6>{{post.createdOn | date : "d MMM yyyy"}}</h6>
                 </div>
                 <ul class="tags">
                   <li ng-repeat="tag in post.tags" ng-click="blog.toggleTag(tag)">
