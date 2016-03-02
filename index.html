@@ -223,31 +223,5 @@
 
   <script type="text/javascript" src="js/prism.js" data-manual></script>
   <script type="text/javascript" src="js/materialize.min.js"></script>
-  <script type="text/javascript">
-    $(document).ready(function(){
-      setTimeout(function(){
-        $('.scrollspy').scrollSpy();
-        $('.tooltipped').tooltip();
-        Prism.highlightAll();
-        $('.button-collapse').sideNav({
-            menuWidth: 300, // Default is 240
-            edge: 'left', // Choose the horizontal origin
-            closeOnClick: true // Closes side-nav on <a> clicks, useful for Angular/Meteor
-          }
-        );
-        var toc = $('.table-of-contents');
-        toc.pushpin({ top: (toc.offset().top - 20) });
-        var burger = $('.burger');
-        burger.pushpin({ top: (burger.offset().top) });
-        $(window).scroll(function() {
-          var scrolled = $(document).scrollTop();
-          $('.table-of-contents').css('top', (parseInt(scrolled) * -0.03) + 'px');
-          if (window.innerWidth > 600) {
-            $('#floating-name').css('top', (10 + (parseInt(scrolled) * -1)) + 'px');
-          }
-        });
-      }, 1000);
-    });
-  </script>
 </body>
 </html>

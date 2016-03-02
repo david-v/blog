@@ -26,7 +26,9 @@
     $httpProvider.defaults.xsrfHeaderName = 'X-CSRFToken';
   });
 
-  app.controller('BlogController', ['$http', '$sanitize', '$cookies', function($http, $sanitize, $cookies){
+  app.controller('BlogController', [
+            '$http', '$sanitize', '$cookies', '$timeout', 
+    function($http,   $sanitize,   $cookies,   $timeout) {
     
     var blog = this;
     blog.title = "david.veli!la";
@@ -57,6 +59,7 @@
           blog.posts.push(post);
         }
         blog.posts[0].toggle();
+        $timeout(onDomLoaded, 500);
       },
       function(error){
         console.log(error);
@@ -80,9 +83,9 @@
       } else {
         blog.selectedTags.push(tag);
       }
-      setTimeout(function(){
+      $timeout(function(){
         $('.scrollspy').scrollSpy();
-      }, 100)
+      });
     };
 
     blog.clearSelectedTags = function(){
@@ -99,6 +102,8 @@
     this.comment = {};
     this.addComment = function(post){
       if (this.comment.captcha != (post.id % 8)) {
+        var $toastContent = $('<span>Check your maths!</span>');
+        Materialize.toast($toastContent, 5000);
         return false;
       }
       this.comment.createdOn = Date.now();
@@ -117,14 +122,39 @@
         })
       }).then(
         function(data){
-          console.log('Success posting comment');
+          var $toastContent = $('<span>Success posting comment</span>');
+          Materialize.toast($toastContent, 5000);
         },
         function(error){
-          console.log('Error');
+          var $toastContent = $('<span>Error posting comment</span>');
+          Materialize.toast($toastContent, 5000);
         }
       );
       this.comment = {};
     }
   }]);
+
+  function onDomLoaded() {
+    $('.scrollspy').scrollSpy();
+    $('.tooltipped').tooltip();
+    Prism.highlightAll();
+    $('.button-collapse').sideNav({
+        menuWidth: 300, // Default is 240
+        edge: 'left', // Choose the horizontal origin
+        closeOnClick: true // Closes side-nav on <a> clicks, useful for Angular/Meteor
+      }
+    );
+    var toc = $('.table-of-contents');
+    toc.pushpin({ top: (toc.offset().top - 20) });
+    var burger = $('.burger');
+    burger.pushpin({ top: (burger.offset().top) });
+    $(window).scroll(function() {
+      var scrolled = $(document).scrollTop();
+      $('.table-of-contents').css('top', (parseInt(scrolled) * -0.03) + 'px');
+      if (window.innerWidth > 600) {
+        $('#floating-name').css('top', (10 + (parseInt(scrolled) * -1)) + 'px');
+      }
+    });
+  }
 
 })();
