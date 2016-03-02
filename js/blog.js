@@ -98,7 +98,7 @@
   app.controller('CommentController', ['$http', '$cookies', function($http, $cookies){
     this.comment = {};
     this.addComment = function(post){
-      if ((1 + this.comment.captcha) != (1 + (post.id % 8))) {
+      if (this.comment.captcha != (post.id % 8)) {
         return false;
       }
       this.comment.createdOn = Date.now();
@@ -112,7 +112,8 @@
         }, 
         data: JSON.stringify({
           author: this.comment.author,
-          body: this.comment.body
+          body: this.comment.body,
+          captcha: this.comment.captcha
         })
       }).then(
         function(data){
