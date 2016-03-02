@@ -101,12 +101,27 @@
     function($scope,   $http,   $cookies) {
     
       this.comment = {};
+
       this.addComment = function(post){
-        if (this.comment.captcha != (post.id % 8)) {
-          Materialize.toast('Check your math!', 5000);
-          $scope.commentForm.captcha.$setValidity("myError", false);
+
+        if (!this.comment.body || this.comment.body.length < 1) {
+          Materialize.toast('Sorry... what did you say?', 5000);
+          $scope.commentForm.body.$setValidity("", false);
           return false;
         }
+
+        if (!this.comment.author || this.comment.author.length < 1) {
+          Materialize.toast('Who are you?', 5000);
+          $scope.commentForm.author.$setValidity("", false);
+          return false;
+        }
+
+        if (this.comment.captcha != (post.id % 8)) {
+          Materialize.toast('Check your math!', 5000);
+          $scope.commentForm.captcha.$setValidity("", false);
+          return false;
+        }
+
         this.comment.createdOn = Date.now();
         post.comments.push(this.comment);
 
@@ -132,7 +147,6 @@
         );
         this.comment = {};
       }
-
   }]);
 
   function onDomLoaded() {
@@ -153,4 +167,14 @@
     });
   }
 
+  inputChanged = function(domInput){
+    var input = $(domInput);
+    if (input.val() == '') {
+      input.removeClass('ng-valid');
+      input.addClass('ng-invalid');
+    } else {
+      input.removeClass('ng-invalid');
+      input.addClass('ng-valid');
+    }
+  }
 })();
