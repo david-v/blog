@@ -104,6 +104,7 @@
       this.addComment = function(post){
         if (this.comment.captcha != (post.id % 8)) {
           Materialize.toast('Check your math!', 5000);
+          $scope.commentForm.captcha.$setValidity("myError", false);
           return false;
         }
         this.comment.createdOn = Date.now();
@@ -131,19 +132,14 @@
         );
         this.comment = {};
       }
-      
+
   }]);
 
   function onDomLoaded() {
     $('.scrollspy').scrollSpy();
     $('.tooltipped').tooltip();
     Prism.highlightAll();
-    $('.button-collapse').sideNav({
-        menuWidth: 300, // Default is 240
-        edge: 'left', // Choose the horizontal origin
-        closeOnClick: true // Closes side-nav on <a> clicks, useful for Angular/Meteor
-      }
-    );
+    $('.button-collapse').sideNav({menuWidth: 300, edge: 'left', closeOnClick: true});
     var toc = $('.table-of-contents');
     toc.pushpin({ top: (toc.offset().top - 20) });
     var burger = $('.burger');
