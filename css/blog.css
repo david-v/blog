@@ -321,3 +321,16 @@ ul.tags li span.active {
 .side-nav a i {
   float: right;
 }
+
+.spinner-container {
+  text-align: center;
+  color: #606060;
+  margin-top: 20%;
+  margin-bottom: 20%;
+}
+
+.preloader-wrapper {
+    display: block;
+    margin: 0 auto;
+    margin-top: 30px;
+}

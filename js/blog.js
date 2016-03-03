@@ -36,12 +36,14 @@
       blog.posts = [];
       blog.allTags = [];
       blog.selectedTags = [];
+      blog.contentLoaded = false;
 
       $http({
         method: 'GET',
         url: 'http://localhost:8000/blog/posts'
       }).then(
         function(response){
+          blog.contentLoaded = true;
           $http.defaults.headers.post['X-CSRFToken'] = $cookies.get('csrftoken');
 
           allPostsData = response.data;
@@ -57,6 +59,7 @@
             blog.posts.push(post);
           }
           blog.posts[0].toggle();
+
           $timeout(onDomLoaded, 500);
         },
         function(error){
