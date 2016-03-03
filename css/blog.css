@@ -166,8 +166,9 @@ h3 {
 .comments textarea {
   height: 8rem;
 }
-.comments input[type=submit] {
+.comments a[type=submit] {
   margin-top: 12px;
+  display: block;
 }
 .comments input[type=number] {
   display: inline-block;

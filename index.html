@@ -46,10 +46,10 @@
 
     <nav>
       <ul id="nav-mobile" class="right hide-on-small-only">
-        <li><a href="#!">Home</a></li>
-        <li class="active"><a href="#!">Blog</a></li>
-        <li><a href="#!">About me</a></li>
-        <li><a href="#!">Contact</a></li>
+        <li><a class="waves-effect" href="#!">Home</a></li>
+        <li class="active"><a class="waves-effect" href="#!">Blog</a></li>
+        <li><a class="waves-effect" href="#!">About me</a></li>
+        <li><a class="waves-effect" href="#!">Contact</a></li>
       </ul>
 
       <ul id="slide-out" class="side-nav">
@@ -201,7 +201,7 @@
                        </li>
                       </ul>
                     </div>
-                    <form name="commentForm" ng-submit="commentCtrl.addComment(post)" novalidate>
+                    <form name="commentForm" novalidate>
                       <div class="row">
                         <div class="col s12 m12 l12">
                           <h6>Add Comment</h6>
@@ -218,7 +218,7 @@
                           <span> = {{1 + (post.id % 8)}}</span>
                         </div>
                         <div class="col s6 m3 l3">
-                          <input class="btn" type="submit" value="send"/>
+                          <a class="btn waves-effect" type="submit" ng-click="commentCtrl.addComment(post)">SEND</a>
                         </div>
                       </div>
                     </form>
