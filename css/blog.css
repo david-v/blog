@@ -285,7 +285,7 @@ ul.tags li span.active {
 }
 
 .name-dot {
-  animation: unhinged 7s 3.5s forwards ease;
+  animation: unhinged 7s 1.5s forwards ease;
   display: inline-block;
   transform-origin: 38% 78%;
 }
